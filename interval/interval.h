@@ -68,8 +68,9 @@ static inline interval interval_scalar_subtract(double s, interval i) {
     return (interval) {s - i.u, s - i.l};
 }
 static inline void interval_inplace_scalar_subtract(double s, interval* i) {
-    i->l -= s;
-    i->u -= s;
+    double l = i->l;
+    i->l = s - i->u;
+    i->u = s - l;
     return;
 }
 
