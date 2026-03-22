@@ -375,6 +375,17 @@ static inline int interval_supset(interval i1, interval i2) {
     return (i2.l > i1.l && i2.u < i1.u);
 }
 
+// Absolute value of an interval
+static inline interval interval_abs(interval i) {
+    if (i.l >= 0) {
+        return (interval) { i.l, i.u };
+    } else if (i.u <= 0) {
+        return (interval) { -i.u, -i.l };
+    } else {
+        return (interval) { 0, fmax(-i.l, i.u) };
+    }
+}
+
 
 #ifdef __cplusplus
 }

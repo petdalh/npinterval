@@ -182,6 +182,7 @@ UNARY_INTERVAL_RETURNER(tanh)
 UNARY_INTERVAL_RETURNER(exp)
 UNARY_INTERVAL_RETURNER(sqrt)
 UNARY_INTERVAL_RETURNER(square)
+UNARY_INTERVAL_RETURNER(abs)
 
 static PyObject*
 pyinterval_positive(PyObject* self, PyObject* NPY_UNUSED(b)) {
@@ -515,7 +516,8 @@ static PyObject* pyinterval_num_power(PyObject* a, PyObject* b, PyObject *c) { (
 static PyObject* pyinterval_num_inplace_power(PyObject* a, PyObject* b, PyObject *c) { (void) c; return pyinterval_inplace_power(a,b); }
 static PyObject* pyinterval_num_negative(PyObject* a) { return pyinterval_negative(a,NULL); }
 static PyObject* pyinterval_num_positive(PyObject* a) { return pyinterval_positive(a,NULL); }
-static PyObject* pyinterval_num_absolute(PyObject* a) { return pyinterval_norm(a,NULL); }
+// static PyObject* pyinterval_num_absolute(PyObject* a) { return pyinterval_norm(a,NULL); }
+static PyObject* pyinterval_num_absolute(PyObject* a) { return pyinterval_abs(a, NULL); }
 static PyObject* pyinterval_num_inverse(PyObject* a) { return pyinterval_inverse(a,NULL); }
 static int pyinterval_num_nonzero(PyObject* a) {
   interval q = ((PyInterval*)a)->obval;
